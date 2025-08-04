@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import "./productItem.css";
 import Button from "react-bootstrap/esm/Button";
 import { useCart } from "../../../context/CartContext";
+import { useFav } from "../../../context/FavContext";
 
 function ProductItem({ product }) {
-  const { dispatch } = useCart();
+  const { dispatch } = useCart()
 
   if (!product || !product.id) {
     return <div>❌ Неправильний продукт</div>;

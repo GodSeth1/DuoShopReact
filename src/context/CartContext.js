@@ -17,7 +17,7 @@ const cartReducer = (state, action) => {
             return state.map(p => p.id === action.product.id ? {...p, quantity: p.quantity + 1} : p)
 
 
-        case "INCREASE":
+        case "DECREASE":
             return state.map(p => p.id === action.product.id ? {...p, quantity: p.quantity - 1} : p)
 
         case "REMOVE":

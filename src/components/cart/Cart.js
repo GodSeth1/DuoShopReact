@@ -2,6 +2,7 @@ import { useCart } from "../../context/CartContext"
 import Modal from 'react-bootstrap/Modal';
 import Button from "react-bootstrap/esm/Button";
 import "./cart.css"
+import products from "../../data/products";
 
 export default function CartModal(props) {
 
@@ -33,8 +34,8 @@ export default function CartModal(props) {
                     </div>
                     <div className="cart-quantity"> 
                       <Button>-</Button>
-                      {prod.quantity}
-                      <Button onClick={() => dispatch({ type: "INCREASE", id: p.id})}></Button>
+                      {p.quantity}
+                      <Button onClick={() => dispatch({ type: "INCREASE", product: p})}></Button>
                     </div>
                     <Button style={{marginLeft: "auto", backgroundColor: "red", height: "40px"}} onClick={() => dispatch({ type: "REMOVE", id: p.id})}>Remove</Button>
                 </div>

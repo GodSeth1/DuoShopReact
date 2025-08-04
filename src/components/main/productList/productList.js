@@ -1,3 +1,4 @@
+
 import products from "../../../data/products"
 import ProductItem from "../productItem/productItem";
 import "./productList.css"
@@ -5,8 +6,8 @@ import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row'
 import Col from "react-bootstrap/esm/Col";
 import Form from 'react-bootstrap/Form';
-import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Pagination from 'react-bootstrap/Pagination';
@@ -20,13 +21,25 @@ const PRODUCTS_ON_PAGE = 8;
 
 function ProductList({ search, filters }) {
 
-
+    const navigate = useNavigate()
     const query = useQuery();
     const categoryFromQuery = query.get("category")?.toLowerCase() || null;
     const searchSecond = query.get("search")?.toLocaleLowerCase() || ""
 
     const [sortVariant, setSortVariant] = useState("Default") 
   
+    useEffect(() => {
+        const params = new URLSearchParams()
+
+        if(sortVariant !== "Default") params.set("sort", sortVariant)
+        if(search) params.set("search", search)
+        if(categoryFromQuery) params.set("category", categoryFromQuery)
+
+        navigate({
+            search: params.toString()
+        })
+    }, [sortVariant])
+
     const filteredProducts = products.filter(prod =>
         prod.price <= filters.maxPrice &&
         prod.name.toLowerCase().includes(search.toLowerCase()) &&

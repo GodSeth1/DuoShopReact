@@ -10,6 +10,7 @@ import ProductDetails from './components/main/ProductDetails/ProductDetail';
 import Container from 'react-bootstrap/esm/Container';
 import { useState } from 'react';
 import Cart from './components/cart/Cart';
+import FavModal from './components/favorite/favorite';
 
 function App() {
   const [search, setSearch] = useState("");
@@ -28,6 +29,7 @@ function App() {
             <Route path='/products/:categoryname' element={<ProductsPage search={search} />} />
             <Route path='/product/:id' element={<ProductDetails />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/favourite' element={<FavModal />} />
           </Routes>
        </Container>
     </div>

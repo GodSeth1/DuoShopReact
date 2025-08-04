@@ -1,0 +1,11 @@
+.product-fav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-fav  img {
+    width: 100px;
+    object-fit: contain;
+    height: 100px;
+    margin-right: 150px;
+}
