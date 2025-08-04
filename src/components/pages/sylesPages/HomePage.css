@@ -1,0 +1,36 @@
+.HomeContainer {
+  display: grid;
+  grid-template-columns: repeat(4 , 1fr);
+  gap: 20px;
+  padding: 20px;
+  
+}
+
+.product-block {
+  width: 100%;
+  height: 450px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.product-ContainerCarousel {
+  grid-column: span 2;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  
+  overflow: hidden;
+}

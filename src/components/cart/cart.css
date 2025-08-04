@@ -1,0 +1,11 @@
+.product-cart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-cart  img {
+    width: 100px;
+    object-fit: contain;
+    height: 100px;
+    margin-right: 150px;
+}

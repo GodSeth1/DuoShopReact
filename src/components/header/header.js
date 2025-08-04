@@ -1,0 +1,112 @@
+import logo from "../../logo/IMG_20250527_174328_473 (1) (1).png"
+import "./header.css"
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import ProductSearch from "../main/search/search";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Link } from "react-router-dom";
+import products from "../../data/products";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import CartModal from "../cart/Cart";
+
+function HeaderBar({ search, setSearch}) {
+
+  const [query, setQuery] = useState("")
+  const navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const uniqueCategories = [...new Set(products.map(p => p.category))];
+  
+  const [modalShow, setModalShow] = useState(false);
+
+  function handleOnSearch(e) {
+    if (e.key === "Enter" ) {
+      navigate(`/products?search=${encodeURIComponent(query)}`)
+    }
+    
+  }
+
+  function clickToSearch() {
+    navigate(`/products?search=${encodeURIComponent(query)}`)
+  }
+
+  return (
+  <Navbar expand="lg" className="bg-dark px-3" variant="dark">
+    <Container>
+      <Navbar.Brand href="/">
+          <img className="img-logo" src={logo} alt="" />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="navbarScroll" />
+      <Navbar.Collapse id="navbarScroll">
+        <Nav
+          className="me-auto my-2 my-lg-0"
+          style={{ maxHeight: '100px' }}
+          navbarScroll
+        >
+          <Link className="LinkDec" to={"/"} href="/">Home</Link>
+          <Link className="LinkDec" to={"/products"} href="/products">Products</Link>
+          <Nav.Link onClick={handleShow}>Filter</Nav.Link>
+
+          <Offcanvas show={show} onHide={handleClose}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Choose the product</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Link to="/products" onClick={handleClose}>Усі товари</Link> <br />
+            
+            {uniqueCategories.map(category => (
+              <div key={category}>
+                <Link
+                  to={`/products?category=${encodeURIComponent(category)}`}
+                  onClick={handleClose}
+                >
+                  {category}
+                </Link>
+                <br />
+              </div>
+            ))}
+          </Offcanvas.Body>
+        </Offcanvas>
+        </Nav>
+        <Form className="d-flex Search"
+        onSubmit={(e) => e.preventDefault()}
+        >
+          <ProductSearch
+            search={search}
+            setSearch={setSearch}
+          />
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleOnSearch}
+            
+          />
+          <Button variant="outline-success"
+            value={query}
+            onClick={clickToSearch}
+          ><i className="bi bi-search"></i></Button>
+          {/* <Link className="CartBTN" to={"/cart"} variant="outline-success" ><i class="bi bi-cart"></i></Link> */}
+        </Form>
+      </Navbar.Collapse>
+      <Button className="CartBTN" onClick={() => setModalShow(true)}><i class="bi bi-cart"></i></Button>
+      <CartModal 
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </Container>
+  </Navbar>
+  )
+}
+
+export default HeaderBar

@@ -1,0 +1,36 @@
+.img-logo {
+    height: 50px;
+}
+
+input {
+    
+}
+
+.Search {
+    gap: 10px;
+}
+
+.CartBTN {
+    background: none;
+    border: 1px solid green;
+    border-radius: 6px;
+    width: 65px;
+    color: green;
+    padding: 6px 12px;
+    transition: .15s;
+    margin: 10px;
+    width: 42px;
+}
+
+.CartBTN:hover {
+    background-color: #198754;
+    color: #fff;
+}
+
+.LinkDec {
+    text-decoration: none;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    color: var(--bs-nav-link-color);
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+        padding-left: var(--bs-navbar-nav-link-padding-x);
+}

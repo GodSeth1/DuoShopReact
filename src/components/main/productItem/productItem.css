@@ -1,0 +1,36 @@
+.cardProduct {
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    border: 2px rgb(220, 220, 220) solid;
+
+}
+
+.cardLink {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.cardLink p {
+    margin-top: auto;
+    color: green;
+    font-weight: 700;
+}
+
+.cardImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cardProduct p {
+    margin-top: 20px;
+}

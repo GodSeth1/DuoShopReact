@@ -1,0 +1,24 @@
+.ProductContainer{
+    display: grid;
+    grid-template-columns: 300px 5fr;
+    margin-top: 50px;
+}
+
+.sort-container {
+    display: flex;
+    justify-content: end;   
+}
+
+.sort-menu {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgb(25, 164, 155);
+    font-weight: bold;
+}
+
+.sort-menu:hover {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgb(25, 164, 200);
+    font-weight: bolder;
+}

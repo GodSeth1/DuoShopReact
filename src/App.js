@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import HeaderBar from './components/header/header';
+// import { Button, Flex } from 'antd';
+import HomePage from './components/pages/HomePage';
+import ProductList from './components/main/productList/productList';
+// import { DatePicker } from 'antd';
+import ProductsPage from './components/pages/ProductsPage';
+import { Routes, Route } from 'react-router-dom';
+import ProductDetails from './components/main/ProductDetails/ProductDetail';
+import Container from 'react-bootstrap/esm/Container';
+import { useState } from 'react';
+import Cart from './components/cart/Cart';
 
 function App() {
+  const [search, setSearch] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <HeaderBar search={search} setSearch={setSearch} />
+        {/* <Button type="primary">Primary Button</Button>
+        <DatePicker /> */}
+        {/* <ProductList /> */}
+
+       <Container>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/products' element={<ProductsPage search={search} />} />
+            <Route path='/products/:categoryname' element={<ProductsPage search={search} />} />
+            <Route path='/product/:id' element={<ProductDetails />} />
+            <Route path='/cart' element={<Cart />} />
+          </Routes>
+       </Container>
     </div>
   );
 }
