@@ -3,13 +3,21 @@ import Modal from 'react-bootstrap/Modal';
 import Button from "react-bootstrap/esm/Button";
 import "./cart.css"
 import products from "../../data/products";
+import { useNavigate } from 'react-router-dom';
 
 export default function CartModal(props) {
 
-    const {cart, dispatch} = useCart()
+  const navigate = useNavigate()
 
-    const totalAmount = cart.reduce((sum, p) => sum + p.price, 0)
-    
+  const {cart, dispatch} = useCart()
+
+  const totalAmount = cart.reduce((sum, p) => sum + p.price, 0)
+  
+  function handleClick() {
+      navigate("/checkout")
+      props.onHide()
+  }
+
   return (
     <Modal
       {...props}
@@ -33,9 +41,9 @@ export default function CartModal(props) {
                         <p>{p.price}</p>
                     </div>
                     <div className="cart-quantity"> 
-                      <Button>-</Button>
+                      <Button onClick={() => dispatch({ type: "DECREASE", product: p})}>-</Button>
                       {p.quantity}
-                      <Button onClick={() => dispatch({ type: "INCREASE", product: p})}></Button>
+                      <Button onClick={() => dispatch({ type: "INCREASE", product: p})}>+</Button>
                     </div>
                     <Button style={{marginLeft: "auto", backgroundColor: "red", height: "40px"}} onClick={() => dispatch({ type: "REMOVE", id: p.id})}>Remove</Button>
                 </div>
@@ -44,7 +52,9 @@ export default function CartModal(props) {
       </Modal.Body>
       <Modal.Footer style={{display: "flex", justifyContent: "space-between"}}>
         <h3>Total amount: {totalAmount}</h3>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button variant="success" onClick={handleClick}>
+            Confirm order
+        </Button>
       </Modal.Footer>
     </Modal>
   );

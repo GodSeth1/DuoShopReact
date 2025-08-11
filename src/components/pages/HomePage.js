@@ -11,7 +11,7 @@ function HomePage() {
   let i = 0;
 
   while (i < totalProducts) {
-    // Блок каруселі
+    
     if (i + carouselSize <= totalProducts) {
       elements.push(
         <div className="product-ContainerCarousel" key={`carousel-${i}`}>
@@ -25,7 +25,6 @@ function HomePage() {
       i += carouselSize;
     }
 
-    // Блок по 4 елементи ProductItem
     for (let k = 0; k < 4 && i < totalProducts; k++, i++) {
       const product = products[i];
 

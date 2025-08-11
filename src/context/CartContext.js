@@ -24,7 +24,7 @@ const cartReducer = (state, action) => {
             return state.filter(p => p.id !== action.id)
 
         case "UPDATE":
-            return action.product;
+            return action.products;
         default:
             return state;
     }

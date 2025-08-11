@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/esm/Container';
 import { useState } from 'react';
 import Cart from './components/cart/Cart';
 import FavModal from './components/favorite/favorite';
+import CheckOutPage from './components/pages/CheckOutPage';
 
 function App() {
   const [search, setSearch] = useState("");
@@ -30,6 +31,7 @@ function App() {
             <Route path='/product/:id' element={<ProductDetails />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourite' element={<FavModal />} />
+            <Route path='/checkout' element={<CheckOutPage />} />
           </Routes>
        </Container>
     </div>
