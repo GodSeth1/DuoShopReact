@@ -32,6 +32,10 @@ function HeaderBar({ search, setSearch}) {
     }
     
   }
+  
+  function handleOnProfile() {
+    navigate("/login")
+  }
 
   function clickToSearch() {
     navigate(`/products?search=${encodeURIComponent(query)}`)
@@ -75,17 +79,16 @@ function HeaderBar({ search, setSearch}) {
           </Offcanvas.Body>
         </Offcanvas>
         </Nav>
-        <Form className="d-flex Search"
-        onSubmit={(e) => e.preventDefault()}
-        >
-          <ProductSearch
-            search={search}
-            setSearch={setSearch}
-          />
+        
+        {/* <ProductSearch
+          search={search}
+          setSearch={setSearch}
+        /> */}
+        <Form className="form-search">
           <Form.Control
             type="search"
             placeholder="Search"
-            className="me-2"
+            className="search-Input"
             aria-label="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -95,11 +98,13 @@ function HeaderBar({ search, setSearch}) {
           <Button variant="outline-success"
             value={query}
             onClick={clickToSearch}
-          ><i className="bi bi-search"></i></Button>
-          {/* <Link className="CartBTN" to={"/cart"} variant="outline-success" ><i class="bi bi-cart"></i></Link> */}
-        </Form>
+            ><i className="bi bi-search">
+          </i></Button>
+        </Form> 
+        
       </Navbar.Collapse>
-      <Button className="CartBTN" onClick={() => setModalShow(true)}><i class="bi bi-cart"></i></Button>
+      <Button variant="outline-light"><i class="bi bi-person" onClick={handleOnProfile}></i></Button>
+      <Button variant="outline-light" style={{marginLeft: "10px"}} onClick={() => setModalShow(true)} ><i class="bi bi-cart"></i></Button>
       <CartModal 
         show={modalShow}
         onHide={() => setModalShow(false)}

@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import { useState } from 'react';
 import products from '../../data/products';
+import "./CheckOutPage"
 
 function CheckOutPage() {
     const {cart, dispatch} = useCart()
@@ -36,19 +37,21 @@ function CheckOutPage() {
         <div>
             <h2>Ordering</h2>
 
-            <p>{totalAmount}</p>
+            <p style={{color: "green"}}>{totalAmount} Uah.</p>
 
             {cart.map(p => (
                 <div className="product-cart">
                     <img src={p.images[0]} alt="" />
-                    <div>
-                        <p>{p.name}</p>
-                        <p>{p.price}</p>
-                    </div>
-                    <div className="cart-quantity"> 
-                      <Button onClick={() => dispatch({ type: "DECREASE", product: p})}>-</Button>
-                      {p.quantity}
-                      <Button onClick={() => dispatch({ type: "INCREASE", product: p})}>+</Button>
+                    <div style={{display: "flex", gap: "20px"}}>
+                        <div>
+                            <p>{p.name}</p>
+                            <p style={{color: "green"}}>{p.price} Uah.</p>
+                        </div>
+                        <div className="cart-quantity"> 
+                          <Button onClick={() => dispatch({ type: "DECREASE", product: p})} style={{marginRight: "5px"}}>-</Button>
+                          {p.quantity}
+                          <Button onClick={() => dispatch({ type: "INCREASE", product: p})} style={{marginLeft: "5px"}}>+</Button>
+                        </div>
                     </div>
                     <Button style={{marginLeft: "auto", backgroundColor: "red", height: "40px"}} onClick={() => dispatch({ type: "REMOVE", id: p.id})}>Remove</Button>
                 </div>
@@ -95,9 +98,11 @@ function CheckOutPage() {
                 </Form.Group>
 
                 
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <div>
+                    <Button style={{marginTop: "15px", }} variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </div>
             </Form>
         </div>
     )

@@ -12,6 +12,8 @@ import { useState } from 'react';
 import Cart from './components/cart/Cart';
 import FavModal from './components/favorite/favorite';
 import CheckOutPage from './components/pages/CheckOutPage';
+import LoginPage from './components/pages/Authorization/AuthPage';
+import PrivateRoute from './components/privateRoutes/privateRoute';
 
 function App() {
   const [search, setSearch] = useState("");
@@ -29,9 +31,14 @@ function App() {
             <Route path='/products' element={<ProductsPage search={search} />} />
             <Route path='/products/:categoryname' element={<ProductsPage search={search} />} />
             <Route path='/product/:id' element={<ProductDetails />} />
-            <Route path='/cart' element={<Cart />} />
             <Route path='/favourite' element={<FavModal />} />
-            <Route path='/checkout' element={<CheckOutPage />} />
+            <Route path='/checkout' element={
+              <PrivateRoute>
+                <CheckOutPage />
+              </PrivateRoute>
+              
+              } />
+            <Route path='/login' element={<LoginPage />} />
           </Routes>
        </Container>
     </div>
