@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import products from "../../data/products";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import CartModal from "../cart/Cart";
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useAuth } from "../../context/AuthContext";
 
 function HeaderBar({ search, setSearch}) {
 
@@ -25,6 +27,13 @@ function HeaderBar({ search, setSearch}) {
   const uniqueCategories = [...new Set(products.map(p => p.category))];
   
   const [modalShow, setModalShow] = useState(false);
+
+  const isLog = window.location.pathname === '/login'
+  const isReg = window.location.pathname === '/register'
+
+  const displayCss = isReg || isLog ? 'none' : ''
+
+  const {isAuth, logout} = useAuth()
 
   function handleOnSearch(e) {
     if (e.key === "Enter" ) {
@@ -41,8 +50,12 @@ function HeaderBar({ search, setSearch}) {
     navigate(`/products?search=${encodeURIComponent(query)}`)
   }
 
+  function handleOnProfile() {
+    navigate('/profile')
+  }
+
   return (
-  <Navbar expand="lg" className="bg-dark px-3" variant="dark">
+  <Navbar expand="lg" className="bg-dark px-3 headerMain" variant="dark" style={{display: displayCss}}>
     <Container>
       <Navbar.Brand href="/">
           <img className="img-logo" src={logo} alt="" />
@@ -103,8 +116,25 @@ function HeaderBar({ search, setSearch}) {
         </Form> 
         
       </Navbar.Collapse>
-      <Button variant="outline-light"><i class="bi bi-person" onClick={handleOnProfile}></i></Button>
+
+      { isAuth ? ( 
+      <Dropdown>
+          <Dropdown.Toggle className="mx-3" variant="outline-light" id="dropdown-basic">
+            <i class="bi bi-person"></i>
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleOnProfile}>Profile</Dropdown.Item>
+            <Dropdown.Item>Order history</Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>) :
+        <Button variant="outline-light"><i class="bi bi-person" onClick={handleOnProfile}></i></Button>
+      }
+      
       <Button variant="outline-light" style={{marginLeft: "10px"}} onClick={() => setModalShow(true)} ><i class="bi bi-cart"></i></Button>
+
       <CartModal 
         show={modalShow}
         onHide={() => setModalShow(false)}

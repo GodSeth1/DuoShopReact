@@ -14,9 +14,12 @@ import FavModal from './components/favorite/favorite';
 import CheckOutPage from './components/pages/CheckOutPage';
 import LoginPage from './components/pages/Authorization/AuthPage';
 import PrivateRoute from './components/privateRoutes/privateRoute';
+import RegPageDez from './components/pages/Authorization/RegPageDez';
+import ProfilePage from './components/pages/ProfilePage/ProfilePage';
 
 function App() {
   const [search, setSearch] = useState("");
+  
 
   return (
     <div className="App">
@@ -35,10 +38,14 @@ function App() {
             <Route path='/checkout' element={
               <PrivateRoute>
                 <CheckOutPage />
-              </PrivateRoute>
-              
-              } />
+              </PrivateRoute>  } />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegPageDez />} ></Route>
+            <Route path='/profile' element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+              } ></Route>
           </Routes>
        </Container>
     </div>

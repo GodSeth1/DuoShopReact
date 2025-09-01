@@ -13,7 +13,7 @@ const products = [
 {
   id: 2,
   images: [
-    "https://content.rozetka.com.ua/goods/images/big/345973840.jpg",
+    "https://mazohub.com/products/philips-hd2582-90-daily-collection-toaster.jpg",
     "https://cdn.27.ua/sc--media--prod/default/1a/3a/e3/1a3ae32e-1a5c-4bd5-813a-94a1cb086e7c.jpg",
     "https://img.ktc.ua/img/base/1_505/3/655783.jpg"
   ],

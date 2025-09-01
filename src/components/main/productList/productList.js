@@ -19,7 +19,7 @@ function useQuery() {
 
 const PRODUCTS_ON_PAGE = 8;
 
-function ProductList({ search, filters }) {
+function ProductList({ search, filters, setMaxPriceProduct }) {
 
     const navigate = useNavigate()
     const query = useQuery();
@@ -40,13 +40,14 @@ function ProductList({ search, filters }) {
         })
     }, [sortVariant])
 
-    const filteredProducts = products.filter(prod =>
+    const filteredProducts = products.filter(prod => (
         prod.price <= filters.maxPrice &&
         prod.name.toLowerCase().includes(search.toLowerCase()) &&
         prod.name.toLowerCase().includes(searchSecond) &&
        (categoryFromQuery ? prod.category?.toLowerCase() === categoryFromQuery : true)
-    )
+    ))
     
+    // setMaxPriceProduct(maxPrice)
 
     const sortedProducts = filteredProducts.sort((a, b) => {
         switch (sortVariant) {
@@ -64,8 +65,9 @@ function ProductList({ search, filters }) {
                 break;
         }
     })
+    
 
-     const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_ON_PAGE)
 

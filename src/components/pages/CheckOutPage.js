@@ -6,9 +6,12 @@ import Col from 'react-bootstrap/esm/Col';
 import { useState } from 'react';
 import products from '../../data/products';
 import "./CheckOutPage"
+import { useAuth } from '../../context/AuthContext';
 
 function CheckOutPage() {
     const {cart, dispatch} = useCart()
+
+    const {addOrder} = useAuth()
     
     const totalAmount = cart.reduce((sum, p) => sum + p.price, 0)
     
@@ -30,7 +33,10 @@ function CheckOutPage() {
             return
         }
 
+        addOrder(cart, form, totalAmount)
+
         dispatch({ type: "UPDATE", products: []})
+
     }
     
     return (
