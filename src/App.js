@@ -16,6 +16,8 @@ import LoginPage from './components/pages/Authorization/AuthPage';
 import PrivateRoute from './components/privateRoutes/privateRoute';
 import RegPageDez from './components/pages/Authorization/RegPageDez';
 import ProfilePage from './components/pages/ProfilePage/ProfilePage';
+import OrderPage from './components/pages/orderPage/OrderPage';
+import Footer from './components/footer/footer';
 
 function App() {
   const [search, setSearch] = useState("");
@@ -46,8 +48,15 @@ function App() {
                 <ProfilePage />
               </PrivateRoute>
               } ></Route>
+              <Route path='/orders' element={
+                <PrivateRoute>
+                  <OrderPage />
+                </PrivateRoute>
+              } />
           </Routes>
        </Container>
+       <Footer />
+
     </div>
   );
 }

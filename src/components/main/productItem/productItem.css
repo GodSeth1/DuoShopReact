@@ -1,12 +1,28 @@
 .cardProduct {
-    height: 100%;
-    
+    width: 100%;
+    height: 450px;
+
     display: flex;
     flex-direction: column;
-
     justify-content: space-between;
-    border: 2px rgb(220, 220, 220) solid;
 
+    border: 2px rgb(220, 220, 220) solid;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #fff;
+    overflow: hidden;
+
+    /* Паралакс */
+    perspective: 1000px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.cardProduct:hover {
+    transform: rotateX(3deg) rotateY(3deg) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
 .cardLink {
@@ -29,8 +45,55 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-radius: 8px;
+
+    /* Паралакс картинки */
+    transform: translateZ(0) translateY(0) scale(1);
+    transition: transform 0.35s ease;
+}
+
+.cardProduct:hover .cardImg {
+    transform: translateZ(15px) translateY(-5px) scale(1.06);
 }
 
 .cardProduct p {
     margin-top: 20px;
+}
+
+.cardInfo {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 10px;
+    color: green;
+    font-weight: 700;
+}
+
+.cardBTN {
+    border: none;
+    color: green;
+    width: auto;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.cardBTN:hover {
+    color: darkgreen;
+    transform: scale(1.4);
+}
+
+.cardBTN:active {
+    transform: scale(0.9);
+    color: darkgreen;
+}
+
+.cardBTN:focus,
+.cardBTN:active,
+.cardBTN:hover,
+.cardBTN:focus:active {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: green;
 }

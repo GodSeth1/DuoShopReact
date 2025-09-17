@@ -91,6 +91,7 @@
 .for-orders{
     display: flex;
     justify-content: space-around;
+    gap: 20px;
 }
 
 .orders-container{
@@ -127,6 +128,7 @@
 .feedbacks-container{
     display: flex;
     justify-content: space-around;
+    gap: 20px;
 }
 
 .feedback{
@@ -151,7 +153,6 @@
 
 .ratting{
     display: flex;
-    align-items: center;
     flex-direction: row;
     height: 32px;
 }
@@ -205,4 +206,12 @@
         width: 98%;
         margin-bottom: 10px
     }
+}
+
+.BTNsv {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   border: 2px solid black;
 }

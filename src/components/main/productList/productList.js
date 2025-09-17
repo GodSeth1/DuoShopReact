@@ -28,53 +28,45 @@ function ProductList({ search, filters, setMaxPriceProduct }) {
 
     const [sortVariant, setSortVariant] = useState("Default") 
   
-    useEffect(() => {
-        const params = new URLSearchParams()
-
-        if(sortVariant !== "Default") params.set("sort", sortVariant)
-        if(search) params.set("search", search)
-        if(categoryFromQuery) params.set("category", categoryFromQuery)
-
-        navigate({
-            search: params.toString()
-        })
-    }, [sortVariant])
-
+    
     const filteredProducts = products.filter(prod => (
         prod.price <= filters.maxPrice &&
         prod.name.toLowerCase().includes(search.toLowerCase()) &&
         prod.name.toLowerCase().includes(searchSecond) &&
-       (categoryFromQuery ? prod.category?.toLowerCase() === categoryFromQuery : true)
+        (categoryFromQuery ? prod.category?.toLowerCase() === categoryFromQuery : true)
+        
     ))
     
     // setMaxPriceProduct(maxPrice)
-
+    
     const sortedProducts = filteredProducts.sort((a, b) => {
         switch (sortVariant) {
             case "The cheapest":
                 return a.price - b.price 
-            case "The most expansive":
-                return b.price - a.price
-            case "A-Z":
-                return a.name.localeCompare(b.name)
-            case "Z-A":
-                return b.name.localeCompare(a.name)
-                
-        
-            default:
-                break;
-        }
-    })
+                case "The most expansive":
+                    return b.price - a.price
+                    case "A-Z":
+                        return a.name.localeCompare(b.name)
+                        case "Z-A":
+                            return b.name.localeCompare(a.name)
+                            
+                            
+                            default:
+                                break;
+                            }
+                        })
     
+                        
+    const pageQuery = query.get("page") || 1
 
     const [currentPage, setCurrentPage] = useState(1)
-
+    
     const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_ON_PAGE)
-
+    
     const lastIndex = currentPage * PRODUCTS_ON_PAGE
     const firtsIndex = lastIndex - PRODUCTS_ON_PAGE
     const currentProducts = sortedProducts.slice(firtsIndex, lastIndex)
-
+    
     let items = [];
     for (let number = 1; number <= totalPages; number++) {
         items.push(
@@ -83,12 +75,26 @@ function ProductList({ search, filters, setMaxPriceProduct }) {
             </Pagination.Item>
         );
     }
-
+    
     // filteredProducts.sort((a, b) => a.name.localeCompare(b.name) )
     // filteredProducts.sort((a, b) => b.price - a.price  )  //////////// Сортування
+    
+    useEffect(() => {
+        const params = new URLSearchParams()
 
+        if(sortVariant !== "Default") params.set("sort", sortVariant)
+        if(search) params.set("search", search)
+        if(currentPage !== 1) params.set("page", currentPage)
+        if(categoryFromQuery) params.set("category", categoryFromQuery)
+        if(filters.maxPrice !== setMaxPriceProduct) params.set("maxprice", filters.maxPrice)
+
+        navigate({
+            search: params.toString()
+        })
+    }, [sortVariant, currentPage, filters.maxPrice])
+    
     return (
-
+        
         <div>
          
             <Container>
@@ -107,9 +113,9 @@ function ProductList({ search, filters, setMaxPriceProduct }) {
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
-                <Row className="g-0 inner-border-grid">
+                <Row className="g-3 inner-border-grid">
                     {currentProducts.map((product) => (
-                        <Col key={product.id} xxl={3} xl={4} md={6}>
+                        <Col className="productListContainer" key={product.id} xxl={3} xl={4} md={6}>
                             <ProductItem product={product} />   
                         </Col>
                     ))} 

@@ -17,6 +17,11 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  transition: 0.7s;
+}
+
+.product-block:hover {
+  
 }
 
 .product-ContainerCarousel {
@@ -34,3 +39,4 @@
   
   overflow: hidden;
 }
+

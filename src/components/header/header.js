@@ -54,6 +54,10 @@ function HeaderBar({ search, setSearch}) {
     navigate('/profile')
   }
 
+  function handleOnOrders() {
+    navigate('/orders')
+  }
+
   return (
   <Navbar expand="lg" className="bg-dark px-3 headerMain" variant="dark" style={{display: displayCss}}>
     <Container>
@@ -76,11 +80,11 @@ function HeaderBar({ search, setSearch}) {
             <Offcanvas.Title>Choose the product</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Link to="/products" onClick={handleClose}>Усі товари</Link> <br />
+            <Link className="filterProductsOnHeader" to="/products" onClick={handleClose}>Усі товари</Link> <br />
             
             {uniqueCategories.map(category => (
               <div key={category}>
-                <Link
+                <Link className="filterProductsOnHeader"
                   to={`/products?category=${encodeURIComponent(category)}`}
                   onClick={handleClose}
                 >
@@ -125,7 +129,7 @@ function HeaderBar({ search, setSearch}) {
 
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleOnProfile}>Profile</Dropdown.Item>
-            <Dropdown.Item>Order history</Dropdown.Item>
+            <Dropdown.Item onClick={handleOnOrders}>Order history</Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
           </Dropdown.Menu>

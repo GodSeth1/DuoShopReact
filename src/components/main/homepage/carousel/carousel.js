@@ -22,11 +22,13 @@ function HomePageCarousel({ startIndex, count }) {
               <Link className="cardLink" to={`/product/${product.id}`}>
                 <img className="cardImg" src={product.images[0]} alt={product.name} />
                 <h3>{product.name}</h3>
-                <p>{product.price} UAH</p>
               </Link>
-              <Button onClick={() => dispatch({ type: "ADD", product })}>
-                <i className="bi bi-cart-plus"></i>
-              </Button>
+                <div className="cardInfoCarousel">
+                  <p>{product.price} UAH</p>
+                <Button className="cardBTN" onClick={() => dispatch({ type: "ADD", product })}>
+                  <i className="bi bi-cart-plus"></i>
+                </Button>
+                </div>
             </div>
 
           </div>

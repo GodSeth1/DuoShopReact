@@ -1,12 +1,32 @@
-import Button from "react-bootstrap/esm/Button"
 import "./ProfilePage.css"
 import { useAuth } from "../../../context/AuthContext"
+import Button from "react-bootstrap/esm/Button"
 
 export default function ProfilePage() {
+
+    const name = useAuth()
     
-    const {logout} = useAuth()
-    
+    const {logout, user} = useAuth()
+
+    console.log(user.orders)
+
+    let orderList = []
+
+
+    if(user.orders.length > 0) {
+        if(user.orders.length === 1) {
+            orderList = user.orders
+        }
+        else {
+            for (let index = 0; index < 2; index++) {
+                orderList.push(user.orders[index])
+        }}
+    }
+
+    console.log(orderList)
+
     return (
+
         <div className="profileMain">
             <div className="client-info">
                 <div className="profile-photo">
@@ -14,13 +34,13 @@ export default function ProfilePage() {
                 </div>
             
                 <div className="container-date">
-                    <h3>My profile</h3>
+                    <h3>{user.username}</h3>
                     <p className="registration-date">Aug. 2024</p>
                 </div>
 
                 <form action="">
-                    <div className="save-container"><button className="Save">Save</button></div>
-                    <div className="save-container"><button onClick={logout} className="Save">Log out</button></div>
+                    <div className="save-container"><Button className="Save BTNsv">Save</Button></div>
+                    <div className="save-container"><Button onClick={logout} className="Save BTNsv">Log out</Button></div>
                 </form>
             </div>
             <div className="second-container">
@@ -34,27 +54,23 @@ export default function ProfilePage() {
                         </select>
                     </div>
 
-                    <div className="for-orders">
-                        <div className="orders-container">
-                            <div className="orders-content">
-                                <img src="https://content.rozetka.com.ua/goods/images/big/500980181.jpg" alt="" />
-                                <div className="about">
-                                    <p>Ноутбук HP Victus Gaming 16-s1002ua (B23BYEA) Mica Silver</p>
-                                    <p className="price">46 999₴</p>
+                    <div className="for-orders" onClick={{}}>
+                        {orderList.map((o) => (
+                            <div className="orders-container">
+                                <div className="orders-content">
+                                    <img src={o.orderProducts[0].images[0]} alt="" />
+                                    <div className="about">
+                                        <p>{(o.orderProducts[0].name)}</p>
+                                        <p className="price">{(o.orderProducts[0].price)}₴</p>
+                                    </div>
                                 </div>
                             </div>
+                            
+
+                        ))}
+                    
                     </div>
-    
-                    <div className="orders-container">
-                        <div className="orders-content">
-                            <img src="https://img.ktc.ua/img/base/1_295/4/586394.webp" alt="" />
-                            <div className="about">
-                                <p>Игровая приставка Sony PlayStation 5 Pro</p>
-                                <p className="price">42 999₴</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <div className="feedbacks">

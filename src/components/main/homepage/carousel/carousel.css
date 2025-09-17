@@ -1,19 +1,19 @@
 .cardCarousel{
-    width: 100%;
+  width: 100%;
 }
 
 .cardCarousel p {
-    margin-top: auto;
+  margin-top: auto;
 }
 
 .cardCarousel img {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
 }
 
 .cardProduct p {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .cardProduct h3 {
@@ -38,4 +38,13 @@
 
   justify-content: space-between;
   border: 2px rgb(220, 220, 220) solid;
+  border-radius: 20px;
+}
+
+.cardInfoCarousel {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 20px 10px;
+  color: green;
+  font-weight: 700;
 }

@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import { useState } from 'react';
 import products from '../../data/products';
-import "./CheckOutPage"
+import "./sylesPages/CheckOutPage.css"
 import { useAuth } from '../../context/AuthContext';
 
 function CheckOutPage() {
@@ -15,6 +15,9 @@ function CheckOutPage() {
     
     const totalAmount = cart.reduce((sum, p) => sum + p.price, 0)
     
+    const totalAmountProduct = ((p) => p.price * p.quantity)
+
+
     const [form, setForm] = useState({
         name: "",
         surName: "",
@@ -40,30 +43,33 @@ function CheckOutPage() {
     }
     
     return (
-        <div>
+        <div className='checkOutPageCont'>
             <h2>Ordering</h2>
 
             <p style={{color: "green"}}>{totalAmount} Uah.</p>
 
             {cart.map(p => (
-                <div className="product-cart">
-                    <img src={p.images[0]} alt="" />
-                    <div style={{display: "flex", gap: "20px"}}>
-                        <div>
-                            <p>{p.name}</p>
-                            <p style={{color: "green"}}>{p.price} Uah.</p>
-                        </div>
-                        <div className="cart-quantity"> 
-                          <Button onClick={() => dispatch({ type: "DECREASE", product: p})} style={{marginRight: "5px"}}>-</Button>
-                          {p.quantity}
-                          <Button onClick={() => dispatch({ type: "INCREASE", product: p})} style={{marginLeft: "5px"}}>+</Button>
-                        </div>
-                    </div>
-                    <Button style={{marginLeft: "auto", backgroundColor: "red", height: "40px"}} onClick={() => dispatch({ type: "REMOVE", id: p.id})}>Remove</Button>
+                <div className="product-cart" key={p.id}>
+                <img src={p.images[0]} alt={p.name} />
+                <div className="product-info">
+                    <p>{p.name}</p>
+                    <p>{p.price} грн</p>
+                </div>
+                <div><p>Всього: {totalAmountProduct(p)} грн</p></div>
+                <div className="cart-quantity"> 
+                    <Button onClick={() => dispatch({ type: "DECREASE", product: p})}>-</Button>
+                    {p.quantity}
+                    <Button variant="primary" onClick={() => dispatch({ type: "INCREASE", product: p})}>+</Button>
+                </div>
+                <Button 
+                    className="remove-btn"
+                    onClick={() => dispatch({ type: "REMOVE", id: p.id})}
+                >
+                    Remove
+                </Button>
                 </div>
             ))}
-
-            <Form onSubmit={handleSubmit}>
+            <Form className='formCheckOutCont' onSubmit={handleSubmit}>
                 <Row>
                     <Col>
                         <Form.Group className="mb-3">

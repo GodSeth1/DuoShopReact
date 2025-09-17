@@ -1,0 +1,14 @@
+.GalleryCont {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.productGalleryInner {
+    display: flex;
+    overflow: hidden;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    
+}

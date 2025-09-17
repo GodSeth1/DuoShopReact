@@ -18,6 +18,11 @@ const cartReducer = (state, action) => {
 
 
         case "DECREASE":
+            const productExist = state.find((p) => p.id === action.product.id)
+
+            if(productExist.quantity <= 1) {
+                return state.filter(p => p.id !== action.product.id)
+            }
             return state.map(p => p.id === action.product.id ? {...p, quantity: p.quantity - 1} : p)
 
         case "REMOVE":

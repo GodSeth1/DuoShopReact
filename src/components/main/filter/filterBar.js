@@ -15,6 +15,8 @@ export default function FilterBar({filters, setFilters, maxPriceProduct}) {
                 onChange={(e) => setFilters({...filters, maxPrice: Number(e.target.value)})}
             />
 
+            
+
             <h3>{filters.maxPrice}</h3>
         </div>
     )
