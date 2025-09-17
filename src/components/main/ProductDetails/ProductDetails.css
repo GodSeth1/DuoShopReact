@@ -29,6 +29,18 @@
     margin-bottom: 20px;
 }
 
+.PrcText {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #eaeaea6a;
+    border-radius: 10px; 
+    padding: 10px;
+    color: #7a7a7a;
+    min-height: 315px;
+    
+}
+
 .PrcBTN {
     display: flex;
     justify-content: space-evenly;

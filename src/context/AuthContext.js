@@ -58,12 +58,18 @@ export function AuthProvider({children}) {
         console.log(user);
         
         const tmpUser = {...user, orders: [...(user.orders), order]}
-
         
         
         setUser(tmpUser)
         localStorage.setItem("user", JSON.stringify(tmpUser))
-        console.log(user)
+
+        
+        const users = JSON.parse(localStorage.getItem("users")) || []
+        const tmpUsers = users.filter((u) => u.username !== user.username)
+        tmpUsers.push(tmpUser)
+        localStorage.setItem("users", JSON.stringify(tmpUsers))
+
+        console.log(tmpUser);
     }
 
     const isAuth = user !== null

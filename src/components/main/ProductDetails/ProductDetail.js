@@ -54,7 +54,7 @@ function ProductDetails() {
                         <h3 style={{color: "green"}}>{product.price}₴</h3>
                         <Button variant="success" className='BTNProd' onClick={() => dispatch({ type: "ADD", product})} >В кошик <i class="bi bi-cart-plus"></i></Button>
                     </div>
-                    <div className='PrcBTN'>
+                    <div className='PrcText'>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit magni eius illum exercitationem corporis, voluptas accusantium. Repellendus, quos doloribus impedit, nihil voluptatum aliquam reprehenderit voluptate delectus amet quaerat ad repellat!</p>
                     </div>
                 </div>
